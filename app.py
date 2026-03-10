@@ -7,21 +7,27 @@ import time # Ensure this can handle a 'mode' parameter
 # 1. Set page config (fix the path error here first!)
 st.set_page_config(page_title="AI Code Cleaner", layout="wide")
 
-# 2. Create the Splash Screen
-placeholder = st.empty()
 
-with placeholder.container():
-    # Center the logo and text
-    st.markdown("<h1 style='text-align: center;'>Welcome to AI Code Cleaner</h1>", unsafe_allow_html=True)
-    
-    # Use your fixed logo path here
-    st.image(r"C:\Users\soumy\Downloads\WhatsApp Image 2026-03-10 at 10.31.07 AM.jpeg", width=300) 
-    
-    st.markdown("<p style='text-align: center;'>Initializing system...</p>", unsafe_allow_html=True)
-    time.sleep(2) # How long the splash screen stays (in seconds)
+# 1. Set page config (Must 
 
-# 3. Clear the splash screen
-placeholder.empty()
+
+# 2. Check if the splash screen has already been shown
+if 'initialized' not in st.session_state:
+    placeholder = st.empty()
+    with placeholder.container():
+        # Center the logo and text
+        st.markdown("<h1 style='text-align: center;'>Welcome to AI Code Cleaner</h1>", unsafe_allow_html=True)
+        
+        # Use your logo path
+        st.image(r"C:\Users\soumy\Downloads\WhatsApp Image 2026-03-10 at 10.31.07 AM.jpeg", width=300) 
+        
+        st.markdown("<p style='text-align: center;'>Initializing system...</p>", unsafe_allow_html=True)
+        time.sleep(2) # Keep splash screen for 2 seconds
+    
+    placeholder.empty() # Clear the splash screen
+    st.session_state['initialized'] = True # Mark as done so it doesn't run again
+
+# 4. Your actual application code starts here
 
 # 4. Your actual application code starts here
 
