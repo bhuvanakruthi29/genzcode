@@ -1,6 +1,31 @@
 import streamlit as st
-from backend import get_ai_response # Ensure this can handle a 'mode' parameter
+from backend import get_ai_response
+import time # Ensure this can handle a 'mode' parameter
 
+
+
+# 1. Set page config (fix the path error here first!)
+st.set_page_config(page_title="AI Code Cleaner", layout="wide")
+
+# 2. Create the Splash Screen
+placeholder = st.empty()
+
+with placeholder.container():
+    # Center the logo and text
+    st.markdown("<h1 style='text-align: center;'>Welcome to AI Code Cleaner</h1>", unsafe_allow_html=True)
+    
+    # Use your fixed logo path here
+    st.image(r"C:\Users\soumy\Downloads\WhatsApp Image 2026-03-10 at 10.31.07 AM.jpeg", width=300) 
+    
+    st.markdown("<p style='text-align: center;'>Initializing system...</p>", unsafe_allow_html=True)
+    time.sleep(2) # How long the splash screen stays (in seconds)
+
+# 3. Clear the splash screen
+placeholder.empty()
+
+# 4. Your actual application code starts here
+
+# ... rest of your code ...
 st.set_page_config(page_title="Code Refine AI", layout="wide")
 st.markdown("""
     <style>
@@ -44,7 +69,7 @@ st.markdown("""
     
     /* Input box text color (keeps text you type visible) */
     .stTextInput input {
-        color: #ffffff !important; /* Keep input text dark so it's readable on white background */
+        color:black !important; /* Keep input text dark so it's readable on white background */
     }
     </style>
     """, unsafe_allow_html=True)
@@ -61,7 +86,7 @@ with st.sidebar:
 # --- Logic for Pages ---
 if page == "Home":
     st.title('AI CODE-REFINE--"Think smarter code cleaner"')
-    user_input = st.text_input("Ask a general question:")
+    user_input = st.text_area("Ask a general question:")
     if st.button("Generate"):
         st.write(get_ai_response(user_input))
 
